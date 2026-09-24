@@ -6,17 +6,32 @@ import * as THREE from './vendor/three.js';
 const canvas = document.getElementById('scene');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Ракурс: высота камеры над плоскостью метки (градусы) и поворот метки вокруг вертикали (радианы)
-const VIEW = { elevation: 55, yaw: -0.28 };
+// Ракурс: высота камеры над плоскостью метки (градусы; 90 — строго сверху),
+// поворот метки в своей плоскости и лёгкий наклон вбок (радианы).
+const VIEW = { elevation: 76, yaw: 0, tilt: -0.1 };
 
+// Палитры. Выбор: ?p=имя в адресе, иначе DEFAULT_PALETTE.
+const DEFAULT_PALETTE = 'yellow';
+const PALETTES = {
+  yellow: { bg: '#18232e', shade: '#0d151c', card: '#f5b800', band: '#2a2623', ink: '#0c0b0a', glyph: '#f4e9d8', glow: '#ffd84d', text: '#f4e9d8', text2: '#8fa0ae', accent: '#f5b800' },
+  cobalt: { bg: '#e8ebf4', shade: '#c3c9df', card: '#ffffff', band: '#2b44e0', ink: '#141a3a', glyph: '#7d87b3', glow: '#2b44e0', text: '#141a3a', text2: '#5b6488', accent: '#2b44e0' },
+  coral:  { bg: '#fbe3d6', shade: '#e6bba4', card: '#ff6a48', band: '#231c45', ink: '#231c45', glyph: '#c48b74', glow: '#e84a2a', text: '#231c45', text2: '#7a5f63', accent: '#e84a2a' },
+  mint:   { bg: '#10292b', shade: '#07191b', card: '#8ae5c7', band: '#15373a', ink: '#061213', glyph: '#6a9a92', glow: '#8ae5c7', text: '#e4f5ef', text2: '#7fa39c', accent: '#8ae5c7' },
+  lilac:  { bg: '#1d1734', shade: '#110d22', card: '#c4b6ff', band: '#261e4a', ink: '#0e0a1d', glyph: '#8a7fb8', glow: '#c4b6ff', text: '#f0ecff', text2: '#9a91bf', accent: '#c4b6ff' },
+};
+const paletteName = new URLSearchParams(location.search).get('p');
+const PAL = PALETTES[paletteName] || PALETTES[DEFAULT_PALETTE];
+applyPageColors(PAL);
+
+const hex = (h) => parseInt(h.slice(1), 16);
 const C = {
-  bg: 0x18232e,
-  ink: 0x0c0b0a,
-  card: 0xf5b800,   // жёлтый ЛАРПИТ
-  band: 0x2a2623,
-  cream: 0xf4e9d8,
-  glow: 0xffd84d,
-  shadow: 0x0d151c,
+  bg: hex(PAL.bg),
+  ink: hex(PAL.ink),
+  card: hex(PAL.card),
+  band: hex(PAL.band),
+  cream: hex(PAL.glyph),
+  glow: hex(PAL.glow),
+  shadow: hex(PAL.shade),
 };
 
 function main() {
@@ -52,6 +67,7 @@ function main() {
   // ---------- инлей ----------
   const inlay = new THREE.Group();
   inlay.rotation.y = VIEW.yaw;
+  inlay.rotation.order = 'YXZ';
   scene.add(inlay);
 
   // карточка
@@ -230,7 +246,7 @@ function main() {
     camera.aspect = aspect;
     // расстояние подбираем так, чтобы инлей помещался по ширине
     // на десктопе метка занимает ~45% высоты, на телефоне ~80% ширины
-    const halfW = aspect < 1 ? 3.2 : 2.3;
+    const halfW = aspect < 1 ? 3.2 : 2.6;
     const dist = Math.max(14, halfW / (Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * aspect));
     const el = THREE.MathUtils.degToRad(VIEW.elevation);
     camera.position.set(0, dist * Math.sin(el), dist * Math.cos(el));
@@ -250,8 +266,9 @@ function main() {
 
     cur.x += (target.x - cur.x) * 0.05;
     cur.y += (target.y - cur.y) * 0.05;
-    inlay.rotation.x = cur.y * 0.09;
-    inlay.rotation.z = -cur.x * 0.11;
+    // лёгкое покачивание + реакция на курсор
+    inlay.rotation.x = cur.y * 0.09 + Math.sin(t * 0.5) * 0.03;
+    inlay.rotation.z = VIEW.tilt - cur.x * 0.11 + Math.sin(t * 0.37 + 1) * 0.03;
     glyphs.rotation.y = t * 0.02;
 
     // лёгкое парение карточки, тень дышит в противофазе
@@ -276,6 +293,19 @@ function main() {
     requestAnimationFrame(frame);
   }
   frame();
+}
+
+// Цвета страницы (текст, акцент, виньетка, запасная SVG) из палитры.
+function applyPageColors(pal) {
+  const root = document.documentElement.style;
+  root.setProperty('--bg', pal.bg);
+  root.setProperty('--ink', pal.text);
+  root.setProperty('--ink-2', pal.text2);
+  root.setProperty('--accent', pal.accent);
+  root.setProperty('--card', pal.card);
+  root.setProperty('--band', pal.band);
+  root.setProperty('--shade', pal.shade);
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', pal.bg);
 }
 
 // Точки спирали: внешний конец на срезе справа сверху, три витка внутрь, вход в чип.
