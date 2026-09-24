@@ -3,9 +3,9 @@
   --bg-deep: #0d151c;
   --ink: #f4e9d8;
   --ink-2: #8fa0ae;
-  --accent: #ff9f45;
-  --accent-deep: #c9662a;
-  --signal: #8fd3ff;
+  --accent: #f5b800;
+  --accent-deep: #b88a00;
+  --signal: #ffd84d;
 }
 
 * { box-sizing: border-box; }
@@ -45,7 +45,7 @@ body {
   place-items: center;
 }
 .fallback.show { display: grid; }
-.fallback svg { width: min(48vw, 320px); height: auto; }
+.fallback svg { width: min(56vw, 300px); height: auto; }
 
 .frame {
   position: fixed;
@@ -82,7 +82,7 @@ body {
   font-weight: 500;
   font-size: clamp(16px, 1.6vw, 20px);
   padding-bottom: 2px;
-  border-bottom: 1px solid rgba(255, 159, 69, 0.6);
+  border-bottom: 1px solid rgba(245, 184, 0, 0.7);
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 .mail:hover { color: var(--accent); border-color: var(--accent); }

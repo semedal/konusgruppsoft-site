@@ -1,4 +1,4 @@
-// Заглушка konusgruppsoft.ru: мультяшный RFID-инлей (карточка, пухлая медная катушка, чип),
+// Заглушка konusgruppsoft.ru: мультяшная RFID-метка в стиле логотипа ЛАРПИТ (карточка, спираль, чип),
 // поле считывателя, которое «подсвечивает» код вокруг. Toon-шейдинг + контуры.
 // three.js вендорен в vendor/three.js.
 import * as THREE from './vendor/three.js';
@@ -6,13 +6,16 @@ import * as THREE from './vendor/three.js';
 const canvas = document.getElementById('scene');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Ракурс: высота камеры над плоскостью метки (градусы) и поворот метки вокруг вертикали (радианы)
+const VIEW = { elevation: 55, yaw: -0.28 };
+
 const C = {
   bg: 0x18232e,
-  ink: 0x120f0d,
-  card: 0xf4e9d8,
-  orange: 0xff9f45,
-  chip: 0x2b2421,
-  sky: 0x8fd3ff,
+  ink: 0x0c0b0a,
+  card: 0xf5b800,   // жёлтый ЛАРПИТ
+  band: 0x2a2623,
+  cream: 0xf4e9d8,
+  glow: 0xffd84d,
   shadow: 0x0d151c,
 };
 
@@ -48,12 +51,12 @@ function main() {
 
   // ---------- инлей ----------
   const inlay = new THREE.Group();
-  inlay.rotation.y = -0.4;
+  inlay.rotation.y = VIEW.yaw;
   scene.add(inlay);
 
   // карточка
-  const CARD_W = 4.4, CARD_H = 2.9, CARD_T = 0.16, BEVEL = 0.05;
-  const cardGeo = new THREE.ExtrudeGeometry(roundedRect(CARD_W, CARD_H, 0.5), {
+  const CARD_W = 3.6, CARD_H = 3.6, CARD_T = 0.16, BEVEL = 0.05;
+  const cardGeo = new THREE.ExtrudeGeometry(roundedRect(CARD_W, CARD_H, 0.42), {
     depth: CARD_T, bevelEnabled: true, bevelThickness: BEVEL, bevelSize: BEVEL, bevelSegments: 4,
   });
   cardGeo.center();
@@ -67,54 +70,33 @@ function main() {
   inlay.add(cardHull);
   const TOP = fullT / 2; // верхняя плоскость карточки
 
-  // катушка: 3 пухлых витка (суперэллипс с сужением)
-  const TURNS = 3, PITCH = 0.30, HW = 1.72, HH = 1.08, ROUND = 6, STEPS = 200, R = 0.07;
-  const pts = [];
-  for (let i = 0; i <= TURNS * STEPS; i++) {
-    const s = i / STEPS;
-    const a = s * Math.PI * 2;
-    const hw = HW - s * PITCH, hh = HH - s * PITCH;
-    const c = Math.cos(a), sn = Math.sin(a);
-    pts.push(new THREE.Vector3(
-      hw * Math.sign(c) * Math.pow(Math.abs(c), 2 / ROUND),
-      TOP + R,
-      hh * Math.sign(sn) * Math.pow(Math.abs(sn), 2 / ROUND),
-    ));
-  }
-  const curve = new THREE.CatmullRomCurve3(pts, false, 'centripetal');
-  const orange = toon(C.orange);
-  inlay.add(new THREE.Mesh(new THREE.TubeGeometry(curve, TURNS * 220, R, 12, false), orange));
-  inlay.add(new THREE.Mesh(new THREE.TubeGeometry(curve, TURNS * 220, R + OUT, 12, false), outline));
-  // круглые концы провода
-  const capGeo = new THREE.SphereGeometry(R, 16, 12);
-  const capHullGeo = new THREE.SphereGeometry(R + OUT, 16, 12);
-  for (const p of [pts[0], pts[pts.length - 1]]) {
-    const cap = new THREE.Mesh(capGeo, orange); cap.position.copy(p); inlay.add(cap);
-    const hull = new THREE.Mesh(capHullGeo, outline); hull.position.copy(p); inlay.add(hull);
-  }
+  // катушка по мотивам логотипа ЛАРПИТ: квадратная спираль со срезанным правым верхним углом,
+  // плоская полоса с острыми углами. Координаты логотипа: x вправо, y вверх (в мире y → −z).
+  const S = 1.36, P = 0.38, BAND_W = 0.19, BAND_T = 0.09, CHAMFER = 0.55, CHIP = 0.5, CHIP_T = 0.2;
+  const path = spiralPath(S, P, CHAMFER, CHIP / 2);
 
-  // чип
-  const inner = pts[pts.length - 1];
-  const CHIP = 0.44, CHIP_T = 0.16;
+  const ink = toon(C.band);
+  const band = new THREE.Mesh(extrudeBand(path, BAND_W / 2, 0, BAND_T), ink);
+  band.rotation.x = -Math.PI / 2;
+  band.position.y = TOP;
+  inlay.add(band);
+  const bandHull = new THREE.Mesh(extrudeBand(path, BAND_W / 2 + OUT, OUT, BAND_T + OUT), outline);
+  bandHull.rotation.x = -Math.PI / 2;
+  bandHull.position.y = TOP - 0.001;
+  inlay.add(bandHull);
+
+  // чип в центре спирали (как заполненный квадрат в логотипе)
   const chipGeo = new THREE.BoxGeometry(CHIP, CHIP_T, CHIP);
-  const chip = new THREE.Mesh(chipGeo, toon(C.chip));
-  chip.position.set(inner.x, TOP + CHIP_T / 2, inner.z);
+  const chip = new THREE.Mesh(chipGeo, ink);
+  chip.position.set(0, TOP + CHIP_T / 2, 0);
   inlay.add(chip);
   const chipHull = new THREE.Mesh(chipGeo, outline);
   chipHull.position.copy(chip.position);
   chipHull.scale.set((CHIP + 2 * OUT) / CHIP, (CHIP_T + 2 * OUT) / CHIP_T, (CHIP + 2 * OUT) / CHIP);
   inlay.add(chipHull);
-
-  // перемычка от чипа через витки наружу
-  const bLen = (HW + 0.18) - inner.x, bT = 0.06, bW = 0.16;
-  const bridgeGeo = new THREE.BoxGeometry(bLen, bT, bW);
-  const bridge = new THREE.Mesh(bridgeGeo, orange);
-  bridge.position.set(inner.x + bLen / 2, TOP + 2 * R + 0.04, inner.z);
-  inlay.add(bridge);
-  const bridgeHull = new THREE.Mesh(bridgeGeo, outline);
-  bridgeHull.position.copy(bridge.position);
-  bridgeHull.scale.set((bLen + 2 * OUT) / bLen, (bT + 2 * OUT) / bT, (bW + 2 * OUT) / bW);
-  inlay.add(bridgeHull);
+  const die = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.025, 0.22), toon(C.card));
+  die.position.set(0, TOP + CHIP_T + 0.0125, 0);
+  inlay.add(die);
 
   // мягкая тень-«блин» под карточкой
   const shadow = new THREE.Mesh(
@@ -122,16 +104,16 @@ function main() {
     new THREE.MeshBasicMaterial({ color: C.shadow, transparent: true, opacity: 0.85, depthWrite: false }),
   );
   shadow.rotation.x = -Math.PI / 2;
-  shadow.position.set(0.25, -0.55, 0.3);
+  shadow.position.set(0.2, -0.55, 0.25);
   scene.add(shadow);
 
   // ---------- поле считывателя: жирные плоские кольца ----------
-  const RINGS = 3, PERIOD = 3.4, EL_X = 1.25, EL_Z = 0.8;
+  const RINGS = 3, PERIOD = 3.4, EL_X = 1.0, EL_Z = 1.0;
   const ringGeo = new THREE.RingGeometry(0.955, 1.0, 120);
   const rings = [];
   for (let i = 0; i < RINGS; i++) {
     const m = new THREE.Mesh(ringGeo, new THREE.MeshBasicMaterial({
-      color: C.sky, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide,
+      color: C.glow, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide,
     }));
     m.rotation.x = -Math.PI / 2;
     m.position.y = -TOP - 0.02;
@@ -162,7 +144,7 @@ function main() {
   const seed = new Float32Array(COUNT);
   const size = new Float32Array(COUNT);
   for (let i = 0; i < COUNT; i++) {
-    const r = 2.1 + Math.sqrt(Math.random()) * 3.6;
+    const r = 1.9 + Math.sqrt(Math.random()) * 3.6;
     const a = Math.random() * Math.PI * 2;
     pos[i * 3] = Math.cos(a) * r * EL_X;
     pos[i * 3 + 1] = -0.6 + Math.random() * 1.8;
@@ -186,9 +168,9 @@ function main() {
       uAtlas: { value: atlasTex },
       uRings: { value: new THREE.Vector3(-10, -10, -10) },
       uRingA: { value: new THREE.Vector3(0, 0, 0) },
-      uCream: { value: new THREE.Color(C.card) },
-      uOrange: { value: new THREE.Color(C.orange) },
-      uSky: { value: new THREE.Color(C.sky) },
+      uCream: { value: new THREE.Color(C.cream) },
+      uOrange: { value: new THREE.Color(C.card) },
+      uSky: { value: new THREE.Color(C.glow) },
       uEl: { value: new THREE.Vector2(EL_X, EL_Z) },
     },
     vertexShader: `
@@ -209,8 +191,8 @@ function main() {
         vHue = step(0.78, seed);
         vec4 mv = modelViewMatrix * vec4(p, 1.0);
         float dist = -mv.z;
-        gl_PointSize = size * uPR * (165.0 / dist) * (1.0 + 0.55 * vLit);
-        vFade = smoothstep(17.0, 7.0, dist) * (0.5 + 0.5 * seed);
+        gl_PointSize = size * uPR * (210.0 / dist) * (1.0 + 0.55 * vLit);
+        vFade = smoothstep(24.0, 12.0, dist) * (0.5 + 0.5 * seed);
         gl_Position = projectionMatrix * mv;
       }
     `,
@@ -247,9 +229,11 @@ function main() {
     const aspect = w / h;
     camera.aspect = aspect;
     // расстояние подбираем так, чтобы инлей помещался по ширине
-    const halfW = aspect < 1 ? 2.4 : 3.4;
-    const dist = Math.max(8.8, halfW / (Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * aspect));
-    camera.position.set(0, dist * 0.46, dist);
+    // на десктопе метка занимает ~45% высоты, на телефоне ~80% ширины
+    const halfW = aspect < 1 ? 3.2 : 2.3;
+    const dist = Math.max(14, halfW / (Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * aspect));
+    const el = THREE.MathUtils.degToRad(VIEW.elevation);
+    camera.position.set(0, dist * Math.sin(el), dist * Math.cos(el));
     camera.lookAt(0, 0, 0);
     camera.updateProjectionMatrix();
     pmat.uniforms.uPR.value = renderer.getPixelRatio();
@@ -273,7 +257,7 @@ function main() {
     // лёгкое парение карточки, тень дышит в противофазе
     const bob = Math.sin(t * 0.9) * 0.06;
     inlay.position.y = bob;
-    shadow.scale.set(2.5 - bob * 1.5, 1.55 - bob, 1);
+    shadow.scale.set(2.15 - bob * 1.5, 2.15 - bob * 1.5, 1);
     shadow.material.opacity = 0.85 - bob * 1.2;
 
     for (let i = 0; i < RINGS; i++) {
@@ -292,6 +276,58 @@ function main() {
     requestAnimationFrame(frame);
   }
   frame();
+}
+
+// Точки спирали: внешний конец на срезе справа сверху, три витка внутрь, вход в чип.
+// Срезы всех витков лежат на параллельных диагоналях x + y = D с шагом P по нормали.
+function spiralPath(S, P, CH, chipHalf) {
+  const D = (k) => 2 * S - CH - k * P * Math.SQRT2;
+  const pts = [];
+  const loops = 3;
+  for (let k = 0; k < loops; k++) {
+    const e = S - k * P;           // полуразмер витка k
+    const xr = k === 0 ? S : e + P; // правая сторона, с которой заходим на срез
+    pts.push([xr, D(k) - xr]);      // начало среза
+    pts.push([D(k) - e, e]);        // конец среза на верхней стороне
+    pts.push([-e, e]);
+    pts.push([-e, -e]);
+    pts.push([e, -e]);
+  }
+  const e = S - (loops - 1) * P;
+  pts.push([e, 0]);
+  pts.push([chipHalf - 0.02, 0]);
+  return pts;
+}
+
+// Полоса вдоль ломаной (острые стыки, торцы можно удлинить) → ExtrudeGeometry.
+function extrudeBand(pts, h, ext, depth) {
+  const n = pts.length;
+  const dir = [];
+  for (let i = 0; i < n - 1; i++) {
+    const dx = pts[i + 1][0] - pts[i][0], dy = pts[i + 1][1] - pts[i][1];
+    const l = Math.hypot(dx, dy);
+    dir.push([dx / l, dy / l]);
+  }
+  const left = [], right = [];
+  for (let i = 0; i < n; i++) {
+    let px = pts[i][0], py = pts[i][1], mx, my, len;
+    if (i === 0 || i === n - 1) {
+      const d = dir[i === 0 ? 0 : n - 2];
+      const sgn = i === 0 ? -1 : 1;
+      px += d[0] * ext * sgn; py += d[1] * ext * sgn;
+      mx = -d[1]; my = d[0]; len = h;
+    } else {
+      const a = dir[i - 1], b = dir[i];
+      mx = -a[1] - b[1]; my = a[0] + b[0];
+      const ml = Math.hypot(mx, my);
+      mx /= ml; my /= ml;
+      len = h / (mx * -b[1] + my * b[0]);
+    }
+    left.push(new THREE.Vector2(px + mx * len, py + my * len));
+    right.push(new THREE.Vector2(px - mx * len, py - my * len));
+  }
+  const shape = new THREE.Shape([...left, ...right.reverse()]);
+  return new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: false });
 }
 
 function roundedRect(w, h, r) {

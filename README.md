@@ -23,5 +23,8 @@ python3 -m http.server 8080
 ## Что править
 
 - Почта и адрес: `index.html`, блок `<address class="label">`.
-- Цвета: переменные в начале `styles.css`.
+- Цвета страницы: переменные в начале `styles.css`. Цвета сцены: объект `C` в `main.js`.
+- Ракурс метки: `VIEW` в начале `main.js` (высота камеры в градусах и поворот).
+- Форма спирали повторяет логотип ЛАРПИТ: `spiralPath()` в `main.js`.
+- Без WebGL показывается плоская SVG-спираль из `index.html`.
 - Обновить three.js: `scripts/vendor-three.sh 0.186.0`.
