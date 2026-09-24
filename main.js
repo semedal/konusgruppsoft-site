@@ -1,4 +1,4 @@
-// Заглушка konusgruppsoft.ru: мультяшная RFID-метка в стиле логотипа ЛАРПИТ (карточка, спираль, чип),
+// Заглушка konusgruppsoft.ru: мультяшная RFID-метка с плоским рисунком логотипа ЛАРПИТ,
 // поле считывателя, которое «подсвечивает» код вокруг. Toon-шейдинг + контуры.
 // three.js вендорен в vendor/three.js.
 import * as THREE from './vendor/three.js';
@@ -86,33 +86,22 @@ function main() {
   inlay.add(cardHull);
   const TOP = fullT / 2; // верхняя плоскость карточки
 
-  // катушка по мотивам логотипа ЛАРПИТ: квадратная спираль со срезанным правым верхним углом,
-  // плоская полоса с острыми углами. Координаты логотипа: x вправо, y вверх (в мире y → −z).
-  const S = 1.36, P = 0.38, BAND_W = 0.19, BAND_T = 0.09, CHAMFER = 0.55, CHIP = 0.5, CHIP_T = 0.2;
+  // рисунок метки по мотивам логотипа ЛАРПИТ: плоская квадратная спираль со срезанным
+  // правым верхним углом и чип в центре, напечатаны на поверхности карточки.
+  // Координаты логотипа: x вправо, y вверх (в мире y → −z).
+  const S = 1.36, P = 0.38, BAND_W = 0.19, CHAMFER = 0.55, CHIP = 0.5;
   const path = spiralPath(S, P, CHAMFER, CHIP / 2);
 
-  const ink = toon(C.band);
-  const band = new THREE.Mesh(extrudeBand(path, BAND_W / 2, 0, BAND_T), ink);
-  band.rotation.x = -Math.PI / 2;
-  band.position.y = TOP;
-  inlay.add(band);
-  const bandHull = new THREE.Mesh(extrudeBand(path, BAND_W / 2 + OUT, OUT, BAND_T + OUT), outline);
-  bandHull.rotation.x = -Math.PI / 2;
-  bandHull.position.y = TOP - 0.001;
-  inlay.add(bandHull);
-
-  // чип в центре спирали (как заполненный квадрат в логотипе)
-  const chipGeo = new THREE.BoxGeometry(CHIP, CHIP_T, CHIP);
-  const chip = new THREE.Mesh(chipGeo, ink);
-  chip.position.set(0, TOP + CHIP_T / 2, 0);
-  inlay.add(chip);
-  const chipHull = new THREE.Mesh(chipGeo, outline);
-  chipHull.position.copy(chip.position);
-  chipHull.scale.set((CHIP + 2 * OUT) / CHIP, (CHIP_T + 2 * OUT) / CHIP_T, (CHIP + 2 * OUT) / CHIP);
-  inlay.add(chipHull);
-  const die = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.025, 0.22), toon(C.card));
-  die.position.set(0, TOP + CHIP_T + 0.0125, 0);
-  inlay.add(die);
+  const print = new THREE.MeshBasicMaterial({
+    color: C.band, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2,
+  });
+  const art = new THREE.Group();
+  art.rotation.x = -Math.PI / 2;
+  art.position.y = TOP + 0.002;
+  art.add(new THREE.Mesh(new THREE.ShapeGeometry(bandShape(path, BAND_W / 2)), print));
+  const chip = new THREE.Mesh(new THREE.PlaneGeometry(CHIP, CHIP), print);
+  art.add(chip);
+  inlay.add(art);
 
   // мягкая тень-«блин» под карточкой
   const shadow = new THREE.Mesh(
@@ -329,8 +318,8 @@ function spiralPath(S, P, CH, chipHalf) {
   return pts;
 }
 
-// Полоса вдоль ломаной (острые стыки, торцы можно удлинить) → ExtrudeGeometry.
-function extrudeBand(pts, h, ext, depth) {
+// Контур полосы вдоль ломаной с острыми стыками и прямыми торцами.
+function bandShape(pts, h) {
   const n = pts.length;
   const dir = [];
   for (let i = 0; i < n - 1; i++) {
@@ -343,8 +332,6 @@ function extrudeBand(pts, h, ext, depth) {
     let px = pts[i][0], py = pts[i][1], mx, my, len;
     if (i === 0 || i === n - 1) {
       const d = dir[i === 0 ? 0 : n - 2];
-      const sgn = i === 0 ? -1 : 1;
-      px += d[0] * ext * sgn; py += d[1] * ext * sgn;
       mx = -d[1]; my = d[0]; len = h;
     } else {
       const a = dir[i - 1], b = dir[i];
@@ -356,8 +343,7 @@ function extrudeBand(pts, h, ext, depth) {
     left.push(new THREE.Vector2(px + mx * len, py + my * len));
     right.push(new THREE.Vector2(px - mx * len, py - my * len));
   }
-  const shape = new THREE.Shape([...left, ...right.reverse()]);
-  return new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: false });
+  return new THREE.Shape([...left, ...right.reverse()]);
 }
 
 function roundedRect(w, h, r) {
