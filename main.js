@@ -11,7 +11,7 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const VIEW = { elevation: 76, yaw: 0, tilt: -0.1 };
 
 // Палитры. Выбор: ?p=имя в адресе, иначе DEFAULT_PALETTE.
-const DEFAULT_PALETTE = 'yellow';
+const DEFAULT_PALETTE = 'mint';
 const PALETTES = {
   yellow: { bg: '#18232e', shade: '#0d151c', card: '#f5b800', band: '#2a2623', ink: '#0c0b0a', glyph: '#f4e9d8', glow: '#ffd84d', text: '#f4e9d8', text2: '#8fa0ae', accent: '#f5b800' },
   cobalt: { bg: '#e8ebf4', shade: '#c3c9df', card: '#ffffff', band: '#2b44e0', ink: '#141a3a', glyph: '#7d87b3', glow: '#2b44e0', text: '#141a3a', text2: '#5b6488', accent: '#2b44e0' },

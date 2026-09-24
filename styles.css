@@ -1,12 +1,12 @@
 :root {
-  /* значения по умолчанию = палитра yellow; main.js переопределяет их по ?p= */
-  --bg: #18232e;
-  --shade: #0d151c;
-  --ink: #f4e9d8;
-  --ink-2: #8fa0ae;
-  --accent: #f5b800;
-  --card: #f5b800;
-  --band: #2a2623;
+  /* значения по умолчанию = палитра mint; main.js переопределяет их по ?p= */
+  --bg: #10292b;
+  --shade: #07191b;
+  --ink: #e4f5ef;
+  --ink-2: #7fa39c;
+  --accent: #8ae5c7;
+  --card: #8ae5c7;
+  --band: #15373a;
 }
 
 * { box-sizing: border-box; }

@@ -23,7 +23,7 @@ python3 -m http.server 8080
 ## Что править
 
 - Почта и адрес: `index.html`, блок `<address class="label">`.
-- Цвета: палитры `PALETTES` в начале `main.js` (yellow, cobalt, coral, mint, lilac). Основная — `DEFAULT_PALETTE`, любую можно посмотреть по адресу `/?p=имя`. Сравнить все сразу локально: `_palettes.html` (в git не попадает).
+- Цвета: палитры `PALETTES` в начале `main.js` (yellow, cobalt, coral, mint, lilac). Основная — `DEFAULT_PALETTE` (сейчас mint), любую можно посмотреть по адресу `/?p=имя`. Сравнить все сразу локально: `_palettes.html` (в git не попадает).
 - Ракурс метки: `VIEW` в начале `main.js` (высота камеры в градусах и поворот).
 - Форма спирали повторяет логотип ЛАРПИТ: `spiralPath()` в `main.js`.
 - Без WebGL показывается плоская SVG-спираль из `index.html`.
