@@ -75,6 +75,34 @@
     .row p{color:var(--text-dim);font-size:15px}
     .row a{display:inline-block;margin-top:10px;font:400 13px/1 var(--font-mono)}
 
+    /* разделы: продукты и услуги, стоимость, сведения об организации */
+    .section{margin-top:64px;border-top:1px solid var(--line-strong);padding-top:22px}
+    .section h2{font:500 15px/1 var(--font-display);letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:22px}
+    .section h2 small{display:block;margin-top:8px;font:400 12px/1.5 var(--font-mono);letter-spacing:.02em;text-transform:none;color:var(--text-faint)}
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+    @media(max-width:680px){.cards{grid-template-columns:1fr}}
+    .card{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:20px 22px}
+    .card b{display:block;font:500 17px/1.3 var(--font-display);letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:10px}
+    .card p{color:var(--text-dim);font-size:15.5px}
+    .card ul{margin:10px 0 0 18px;color:var(--text-dim);font-size:15.5px}
+    .card li{margin-bottom:4px}
+
+    .price{width:100%;border-collapse:collapse;font-size:16px}
+    .price th,.price td{text-align:left;vertical-align:top;padding:12px 10px;border-bottom:1px solid var(--line)}
+    .price th{font:600 12px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+    .price td:last-child,.price th:last-child{text-align:right;white-space:nowrap;font-family:var(--font-mono);color:var(--amber)}
+    .price small{display:block;color:var(--text-faint);font-size:13.5px}
+    .price + p{margin-top:14px;color:var(--text-faint);font-size:14px}
+
+    .info{display:grid;grid-template-columns:260px 1fr;gap:0;font-size:16px}
+    @media(max-width:680px){.info{grid-template-columns:1fr}.info dt{padding-bottom:2px}.info dd{padding-top:0}}
+    .info dt,.info dd{padding:11px 0;border-bottom:1px solid var(--line)}
+    .info dt{font:600 12px/1.9 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint)}
+    .info dd{color:var(--text)}
+    .info dd ul{margin:0 0 0 18px}
+    .info dd li{margin-bottom:4px}
+    .info code{font:400 15px/1.4 var(--font-mono);color:var(--amber)}
+
     footer{border-top:1px solid var(--line);padding:22px 0 28px;color:var(--text-faint);font:400 12.5px/1.8 var(--font-mono)}
     footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   </style>
@@ -127,13 +155,85 @@
           <p>От обследования площадки и испытаний до опытной эксплуатации.</p>
         </div>
       </div>
+
+      <section class="section" id="products">
+        <h2>Продукты и услуги</h2>
+        <div class="cards">
+          <div class="card">
+            <b>Платформа ЛАРПИТ</b>
+            <p>Программный комплекс идентификационной маркировки и учёта деталей по UHF RFID. Собственная разработка, в составе:</p>
+            <ul>
+              <li>мобильное приложение промышленного считывателя-программатора (Android) — запись и проверка меток;</li>
+              <li>серверная часть с централизованной базой данных — паспорт и история каждой детали;</li>
+              <li>веб-панель управления — учётные записи, устройства, справочники, операции, отчёты;</li>
+              <li>приложение работника на смартфоне с компактным UHF-считывателем;</li>
+              <li>встроенное ПО стационарных точек контроля (антенных комплексов).</li>
+            </ul>
+          </div>
+          <div class="card">
+            <b>Оборудование</b>
+            <p>Поставка и комплектование под объект заказчика:</p>
+            <ul>
+              <li>UHF-метки EPC Gen2, в том числе для установки на металл;</li>
+              <li>стационарные считыватели и антенные комплексы точек контроля;</li>
+              <li>компактные UHF-считыватели к смартфонам, считыватели-программаторы;</li>
+              <li>контроллеры точек контроля, монтажные комплекты.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <b>Внедрение и сопровождение</b>
+            <p>Обследование площадки и пробные считывания, проектирование точек контроля, установка и настройка платформы, пусконаладка оборудования, опытная эксплуатация, обучение персонала, техническая поддержка и сопровождение.</p>
+          </div>
+          <div class="card">
+            <b>Разработка ПО на заказ</b>
+            <p>Доработка платформы под процессы заказчика: отраслевые модули учёта, маршрутные карты и отчётность, интеграция с учётными и производственными системами, встроенное ПО считывателей.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="prices">
+        <h2>Стоимость<small>ориентировочные цены; итоговая стоимость определяется договором по составу поставки и работ</small></h2>
+        <table class="price">
+          <tr><th>Позиция</th><th>Цена</th></tr>
+          <tr><td>Лицензия на платформу ЛАРПИТ<small>простая (неисключительная) лицензия, одно предприятие, 12 месяцев</small></td><td>от 300 000 ₽</td></tr>
+          <tr><td>Разработка и доработка программного обеспечения<small>за один час работы специалиста</small></td><td>4 000 ₽</td></tr>
+          <tr><td>Оборудование, внедрение и сопровождение<small>метки, считыватели, антенные комплексы; обследование, проектирование, пусконаладка</small></td><td>по запросу</td></tr>
+        </table>
+        <p>Цены указаны без НДС. Стоимость оборудования и внедрения рассчитывается по составу поставки и работ — <a href="mailto:info@konusgruppsoft.ru">info@konusgruppsoft.ru</a>.</p>
+      </section>
+
+      <section class="section" id="company">
+        <h2>Сведения об организации</h2>
+        <dl class="info">
+          <dt>Полное наименование</dt><dd>Акционерное общество «КонусГрупп Софт»</dd>
+          <dt>Сокращённое наименование</dt><dd>АО «КГ Софт»</dd>
+          <dt>ИНН / КПП</dt><dd><code>5007129820</code> / <code>500701001</code></dd>
+          <dt>ОГРН</dt><dd><code>1265000065186</code></dd>
+          <dt>Адрес</dt><dd>141983, Московская область, г. о. Дубна, г. Дубна, ул. Программистов, д. 4, стр. 2</dd>
+          <dt>Телефон</dt><dd><a href="tel:+79175108618">+7 (917) 510-86-18</a></dd>
+          <dt>Электронная почта</dt><dd><a href="mailto:info@konusgruppsoft.ru">info@konusgruppsoft.ru</a></dd>
+          <dt>Основной ОКВЭД</dt><dd><code>62.01</code> — Разработка компьютерного программного обеспечения</dd>
+          <dt>Виды деятельности в области ИТ<br>(перечень, утверждённый приказом Минцифры России от 11.05.2023 № 449)</dt>
+          <dd><ul>
+            <li><code>1.01</code> — проектирование, разработка, адаптация, модификация, установка, тестирование и сопровождение программ для ЭВМ и баз данных;</li>
+            <li><code>1.02</code> — проектирование и разработка программно-аппаратных комплексов, электронной продукции и устройств интернета вещей;</li>
+            <li><code>2.01</code> — реализация программ для ЭВМ и баз данных, предоставление прав использования (лицензирование);</li>
+            <li><code>8.01</code> — подготовка и реализация проектов автоматизации и цифровизации, включая монтажные и пусконаладочные работы;</li>
+            <li><code>27.01</code> — поставка программно-аппаратных комплексов и оборудования, его компонентов.</li>
+          </ul></dd>
+          <dt>Исключительные права на ПО</dt>
+          <dd>АО «КонусГрупп Софт» — правообладатель программного комплекса «ЛАРПИТ» (исключительные права в полном объёме). Право использования предоставляется по лицензионному договору (простая неисключительная лицензия) либо в составе договора на разработку и внедрение.</dd>
+          <dt>Языки и инструменты разработки</dt>
+          <dd>Kotlin (приложения Android), TypeScript и Node.js (серверная часть), React (веб-интерфейсы), PostgreSQL и SQLite (базы данных), C++ (встроенное ПО считывателей), Git.</dd>
+        </dl>
+      </section>
     </main>
   </div>
 
   <footer>
     <div class="wrap">
-      <span>АО «КонусГрупп Софт» · ОГРН 1265000065186 · ИНН 5007129820</span>
-      <span>141983, Дубна, ул. Программистов, д. 4, стр. 2</span>
+      <span>АО «КонусГрупп Софт» · ОГРН 1265000065186 · ИНН 5007129820 · +7 (917) 510-86-18</span>
+      <span>141983, Московская область, г. Дубна, ул. Программистов, д. 4, стр. 2</span>
     </div>
   </footer>
 </body>
