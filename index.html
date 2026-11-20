@@ -89,11 +89,9 @@
 
     /* патент: карточка-«охранный документ» */
     .patent{border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:8px;background:var(--panel);padding:20px 22px}
-    .patent .pt-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-    .patent .pt-kind{font:600 12px/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint)}
+    .patent .pt-kind{display:block;margin-bottom:8px;font:600 12px/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint)}
     .patent .pt-title{display:block;font:500 clamp(19px,3vw,23px)/1.25 var(--font-display);letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:10px}
-    .patent p{color:var(--text-dim);font-size:15.5px;max-width:72ch}
-    .patent .info{margin-top:18px;grid-template-columns:230px 1fr}
+    .patent .info{margin-top:10px;grid-template-columns:230px 1fr}
     @media(max-width:680px){.patent .info{grid-template-columns:1fr}}
     .patent .info dd{color:var(--text)}
 
@@ -203,19 +201,14 @@
       </section>
 
       <section class="section" id="patent">
-        <h2>Патент<small>конструкция защищённой UHF-метки</small></h2>
+        <h2>Патент</h2>
         <div class="patent">
-          <div class="pt-head">
-            <span class="pt-kind">Роспатент · полезная модель · RU</span>
-            <span class="ok">Патент РФ</span>
-          </div>
+          <span class="pt-kind">Полезная модель</span>
           <b class="pt-title">Пассивный радиочастотный идентификатор (RFID)</b>
-          <p>Метка закрепляется на детали и закрывается армирующим слоем из арамидной (кевларовой) ткани и радиопрозрачным полимером. Получается монолитный композитный корпус, единый с поверхностью детали. Антенна уложена многослойной складчатой структурой и выдерживает деформацию детали без разрыва.</p>
           <dl class="info">
-            <dt>Заявка</dt><dd><code>№ 2026121519</code></dd>
-            <dt>Приоритет</dt><dd>09.07.2026</dd>
-            <dt>Решение Роспатента</dt><dd>о выдаче патента от 19.11.2026</dd>
-            <dt>МПК</dt><dd><code>G06K 19/077</code>, <code>H04W 12/47</code></dd>
+            <dt>Номер заявки</dt><dd><code>№ 2026121519</code></dd>
+            <dt>Дата приоритета</dt><dd>09.07.2026</dd>
+            <dt>Решение Роспатента</dt><dd>от 19.11.2026 о выдаче патента</dd>
           </dl>
         </div>
       </section>
