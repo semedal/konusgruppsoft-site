@@ -65,7 +65,7 @@
     }
     .epc .meta{display:flex;align-items:center;gap:14px}
     .epc span{color:var(--text-faint);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
-    .epc .ok{color:var(--green);border:1px solid var(--green);border-radius:4px;padding:3px 8px;font-size:11.5px;letter-spacing:.1em}
+    .epc .ok,.ok{color:var(--green);border:1px solid var(--green);border-radius:4px;padding:3px 8px;font:400 11.5px/1.5 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
 
     .rows{margin-top:42px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
     @media(max-width:680px){.rows{grid-template-columns:1fr}}
@@ -86,6 +86,16 @@
     .card p{color:var(--text-dim);font-size:15.5px}
     .card ul{margin:10px 0 0 18px;color:var(--text-dim);font-size:15.5px}
     .card li{margin-bottom:4px}
+
+    /* патент: карточка-«охранный документ» */
+    .patent{border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:8px;background:var(--panel);padding:20px 22px}
+    .patent .pt-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+    .patent .pt-kind{font:600 12px/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint)}
+    .patent .pt-title{display:block;font:500 clamp(19px,3vw,23px)/1.25 var(--font-display);letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:10px}
+    .patent p{color:var(--text-dim);font-size:15.5px;max-width:72ch}
+    .patent .info{margin-top:18px;grid-template-columns:230px 1fr}
+    @media(max-width:680px){.patent .info{grid-template-columns:1fr}}
+    .patent .info dd{color:var(--text)}
 
     .price{width:100%;border-collapse:collapse;font-size:16px}
     .price th,.price td{text-align:left;vertical-align:top;padding:12px 10px;border-bottom:1px solid var(--line)}
@@ -148,6 +158,7 @@
           <i>02</i>
           <b>Оборудование</b>
           <p>UHF-метки, в том числе для металла; считыватели и антенные комплексы.</p>
+          <a href="#patent">Патент на полезную модель →</a>
         </div>
         <div class="row">
           <i>03</i>
@@ -188,6 +199,26 @@
             <b>Разработка ПО на заказ</b>
             <p>Доработка платформы под процессы заказчика: отраслевые модули учёта, маршрутные карты и отчётность, интеграция с учётными и производственными системами, встроенное ПО считывателей.</p>
           </div>
+        </div>
+      </section>
+
+      <section class="section" id="patent">
+        <h2>Патент<small>конструкция защищённой UHF-метки</small></h2>
+        <div class="patent">
+          <div class="pt-head">
+            <span class="pt-kind">Роспатент · полезная модель · RU</span>
+            <span class="ok">Решение о выдаче</span>
+          </div>
+          <b class="pt-title">Пассивный радиочастотный идентификатор (RFID)</b>
+          <p>Метка закрепляется на детали и закрывается армирующим слоем из арамидной (кевларовой) ткани и радиопрозрачным полимером. Получается монолитный композитный корпус, единый с поверхностью детали. Антенна уложена многослойной складчатой структурой и выдерживает деформацию детали без разрыва.</p>
+          <dl class="info">
+            <dt>Заявка</dt><dd><code>№ 2026121519</code></dd>
+            <dt>Приоритет</dt><dd>09.07.2026</dd>
+            <dt>Решение Роспатента</dt><dd>о выдаче патента от 19.11.2026; номер патента присваивается при регистрации в Государственном реестре полезных моделей РФ</dd>
+            <dt>МПК</dt><dd><code>G06K 19/077</code>, <code>H04W 12/47</code></dd>
+            <dt>Патентообладатель</dt><dd>ООО «КонусГрупп»</dd>
+            <dt>Переход прав</dt><dd>к АО «КонусГрупп Софт» — по заключённому предварительному договору об отчуждении исключительного права; переход завершается после выдачи патента и государственной регистрации отчуждения в Роспатенте</dd>
+          </dl>
         </div>
       </section>
 
