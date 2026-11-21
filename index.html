@@ -5,131 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>КГ Софт — ПО и RFID для промышленности</title>
   <meta name="description" content="АО «КонусГрупп Софт» — платформа ЛАРПИТ, промышленные UHF RFID-метки и оборудование. Дубна.">
-  <meta name="theme-color" content="#0e1013">
   <meta property="og:title" content="КГ Софт — ПО и RFID для промышленности">
-  <meta property="og:description" content="Платформа ЛАРПИТ, UHF-метки и оборудование прослеживаемости.">
+  <meta property="og:description" content="АО «КонусГрупп Софт» — платформа ЛАРПИТ, промышленные UHF RFID-метки и оборудование. Дубна.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://konusgruppsoft.ru/">
+  <link rel="canonical" href="https://konusgruppsoft.ru/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23161a20'/%3E%3Cpath d='M27.70 9.03 L22.97 4.30 L4.30 4.30 L4.30 27.70 L27.70 27.70 L27.70 13.66 L21.61 7.57 L7.57 7.57 L7.57 24.43 L24.43 24.43 L24.43 15.01 L20.26 10.84 L10.84 10.84 L10.84 21.16 L21.16 21.16 L21.16 16.00 L18.15 16.00' fill='none' stroke='%23e8a33d' stroke-width='1.9' stroke-linejoin='miter'/%3E%3Crect x='13.9' y='13.9' width='4.2' height='4.2' fill='%23e8a33d'/%3E%3C/svg%3E">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=PT+Sans:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0e1013; --bg-grid:#13161b; --panel:#161a20; --panel-2:#1b2028;
-      --line:#262c36; --line-strong:#343c49;
-      --text:#cdd5df; --text-dim:#7d8794; --text-faint:#525c69;
-      --amber:#e8a33d; --amber-dim:#8a6224; --green:#46c178; --yellow:#d9c33c; --cyan:#4fb8c9;
-      --font-display:"Oswald","Arial Narrow",sans-serif;
-      --font-body:"PT Sans","Helvetica Neue",sans-serif;
-      --font-mono:"JetBrains Mono","Menlo",monospace;
-    }
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{
-      background:var(--bg);
-      background-image:
-        linear-gradient(var(--bg-grid) 1px, transparent 1px),
-        linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
-      background-size:44px 44px;
-      color:var(--text);
-      font:400 16.5px/1.6 var(--font-body);
-      -webkit-font-smoothing:antialiased;
-      min-height:100svh; display:flex; flex-direction:column;
-    }
-    .hazard{
-      height:8px;flex:none;
-      background:repeating-linear-gradient(-45deg, var(--amber) 0 14px, var(--bg) 14px 28px);
-    }
-    .wrap{max-width:900px;width:100%;margin:0 auto;padding:0 20px}
-    a{color:var(--amber);text-decoration:none}
-    a:hover{text-decoration:underline;text-underline-offset:4px}
-
-    header{padding:24px 0}
-    .top{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:13px}
-    .brand svg{width:38px;height:38px;flex:none}
-    .brand b{font:500 17px/1.1 var(--font-display);letter-spacing:.1em;text-transform:uppercase;color:var(--text)}
-    .brand small{display:block;font:400 11.5px/1.5 var(--font-mono);color:var(--text-dim);text-transform:none;letter-spacing:.02em}
-    .top .mail{font:400 13px/1 var(--font-mono);color:var(--text-dim)}
-    .top .mail:hover{color:var(--amber)}
-
-    main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:46px 0 40px}
-    h1{font:600 clamp(34px,6vw,58px)/1.08 var(--font-display);text-transform:uppercase;letter-spacing:.015em;color:#fff;max-width:18ch}
-    h1 em{font-style:normal;color:var(--amber)}
-    .lead{margin-top:22px;max-width:56ch;font-size:17.5px;color:var(--text-dim)}
-
-    .epc{
-      margin-top:34px;border:1px solid var(--line);border-radius:8px;background:var(--panel);
-      padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-      font:400 clamp(13px,2.5vw,17px)/1.5 var(--font-mono);color:var(--amber);
-    }
-    .epc .meta{display:flex;align-items:center;gap:14px}
-    .epc span{color:var(--text-faint);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
-    .epc .ok,.ok{color:var(--green);border:1px solid var(--green);border-radius:4px;padding:3px 8px;font:400 11.5px/1.5 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
-
-    .rows{margin-top:42px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-    @media(max-width:680px){.rows{grid-template-columns:1fr}}
-    .row{border-top:1px solid var(--line-strong);padding-top:16px}
-    .row i{display:block;font:600 12px/1 var(--font-mono);color:var(--amber);font-style:normal;margin-bottom:12px}
-    .row b{display:block;font:500 17px/1.3 var(--font-display);letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:8px}
-    .row p{color:var(--text-dim);font-size:15px}
-    .row a{display:inline-block;margin-top:10px;font:400 13px/1 var(--font-mono)}
-
-    /* разделы: продукты и услуги, стоимость, сведения об организации */
-    .section{margin-top:64px;border-top:1px solid var(--line-strong);padding-top:22px}
-    .section h2{font:500 15px/1 var(--font-display);letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:22px}
-    .section h2 small{display:block;margin-top:8px;font:400 12px/1.5 var(--font-mono);letter-spacing:.02em;text-transform:none;color:var(--text-faint)}
-    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-    @media(max-width:680px){.cards{grid-template-columns:1fr}}
-    .card{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:20px 22px}
-    .card b{display:block;font:500 17px/1.3 var(--font-display);letter-spacing:.06em;text-transform:uppercase;color:var(--text);margin-bottom:10px}
-    .card p{color:var(--text-dim);font-size:15.5px}
-    .card ul{margin:10px 0 0 18px;color:var(--text-dim);font-size:15.5px}
-    .card li{margin-bottom:4px}
-
-    /* патент: карточка-«охранный документ» */
-    .patent{border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:8px;background:var(--panel);padding:20px 22px}
-    .patent .pt-kind{display:block;margin-bottom:8px;font:600 12px/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint)}
-    .patent .pt-title{display:block;font:500 clamp(19px,3vw,23px)/1.25 var(--font-display);letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:10px}
-    .patent .info{margin-top:10px;grid-template-columns:230px 1fr}
-    @media(max-width:680px){.patent .info{grid-template-columns:1fr}}
-    .patent .info dd{color:var(--text)}
-
-    .price{width:100%;border-collapse:collapse;font-size:16px}
-    .price th,.price td{text-align:left;vertical-align:top;padding:12px 10px;border-bottom:1px solid var(--line)}
-    .price th{font:600 12px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
-    .price td:last-child,.price th:last-child{text-align:right;white-space:nowrap;font-family:var(--font-mono);color:var(--amber)}
-    .price small{display:block;color:var(--text-faint);font-size:13.5px}
-    .price + p{margin-top:14px;color:var(--text-faint);font-size:14px}
-
-    .info{display:grid;grid-template-columns:260px 1fr;gap:0;font-size:16px}
-    @media(max-width:680px){.info{grid-template-columns:1fr}.info dt{padding-bottom:2px}.info dd{padding-top:0}}
-    .info dt,.info dd{padding:11px 0;border-bottom:1px solid var(--line)}
-    .info dt{font:600 12px/1.9 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint)}
-    .info dd{color:var(--text)}
-    .info dd ul{margin:0 0 0 18px}
-    .info dd li{margin-bottom:4px}
-    .info code{font:400 15px/1.4 var(--font-mono);color:var(--amber)}
-
-    footer{border-top:1px solid var(--line);padding:22px 0 28px;color:var(--text-faint);font:400 12.5px/1.8 var(--font-mono)}
-    footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  </style>
+  <link rel="stylesheet" href="/assets/site.css">
 </head>
-<body>
+<body data-api="">
   <div class="hazard" aria-hidden="true"></div>
   <div class="wrap">
     <header>
       <div class="top">
-        <div class="brand">
+        <a class="brand" href="/">
           <svg viewBox="0 0 200 200" aria-hidden="true">
-            <rect x="6" y="6" width="188" height="188" rx="22" fill="#161a20" stroke="#343c49" stroke-width="4"/>
-            <path d="M170.72 57.88 L142.12 29.28 L29.28 29.28 L29.28 170.72 L170.72 170.72 L170.72 85.82 L133.94 49.04 L49.04 49.04 L49.04 150.96 L150.96 150.96 L150.96 94.01 L125.75 68.80 L68.80 68.80 L68.80 131.20 L131.20 131.20 L131.20 100.00 L113.00 100.00" fill="none" stroke="#e8a33d" stroke-width="11" stroke-linejoin="miter"/>
-            <rect x="87" y="87" width="26" height="26" fill="#e8a33d"/>
+            <rect class="lg-bg" x="6" y="6" width="188" height="188" rx="22" stroke-width="4"/>
+            <path class="lg-line" d="M170.72 57.88 L142.12 29.28 L29.28 29.28 L29.28 170.72 L170.72 170.72 L170.72 85.82 L133.94 49.04 L49.04 49.04 L49.04 150.96 L150.96 150.96 L150.96 94.01 L125.75 68.80 L68.80 68.80 L68.80 131.20 L131.20 131.20 L131.20 100.00 L113.00 100.00" stroke-width="11" stroke-linejoin="miter"/>
+            <rect class="lg-dot" x="87" y="87" width="26" height="26"/>
           </svg>
           <b>КГ Софт<small>АО «КонусГрупп Софт»</small></b>
+        </a>
+        <div class="tools">
+          <a class="mail" href="mailto:info@konusgruppsoft.ru">info@konusgruppsoft.ru</a>
+          <button class="theme" type="button" aria-label="Переключить тему оформления">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 0 0 13z" fill="currentColor"/></svg>
+            <span>Светлая</span>
+          </button>
         </div>
-        <a class="mail" href="mailto:info@konusgruppsoft.ru">info@konusgruppsoft.ru</a>
       </div>
+      <nav aria-label="Разделы сайта"><ul>
+        <li><a href="/" aria-current="page">Главная</a></li>
+        <li><a href="/vnedrenie/">Внедрение</a></li>
+        <li><a href="/proekt/">Ход проекта</a></li>
+        <li><a href="/ispytaniya/">Испытания</a></li>
+        <li><a href="/razrabotka/">Разработка</a></li>
+        <li><a href="/oborudovanie/">Оборудование</a></li>
+        <li><a href="/oez/">ОЭЗ «Дубна»</a></li>
+        <li><a href="/o-kompanii/">О компании</a></li>
+      </ul></nav>
     </header>
 
     <main>
@@ -137,126 +55,59 @@
       <p class="lead">Разрабатываем платформу ЛАРПИТ и поставляем промышленные UHF-метки
          и считыватели: маркировка деталей, точки контроля, прослеживаемость изделий.</p>
 
-      <div class="epc">
-        4C41 5250 4954 0001 00A7 3F2C 91D4 5B08
-        <div class="meta">
-          <span>UHF&nbsp;Gen2&nbsp;·&nbsp;Inventory</span>
-          <span class="ok">Verified</span>
-        </div>
+      <div class="focus">
+        <b>Первое направление — железнодорожный транспорт</b>
+        <p>Сейчас технология проходит испытания и пилотный проект на грузовых вагонах: метка на каждой ответственной детали, паспорт и история детали в единой базе.</p>
       </div>
 
-      <div class="rows">
-        <div class="row">
-          <i>01</i>
-          <b>Платформа</b>
-          <p>ЛАРПИТ — идентификационная маркировка и учёт деталей по UHF RFID.</p>
-          <a href="https://larpit.tech">larpit.tech →</a>
+      <div class="stage">
+        <div class="wagon">
+          <img src="/assets/img/wagon-render.png" width="996" height="630" alt="Грузовой вагон с точками установки RFID-меток">
+          <button class="tagpt" type="button" style="left:60%;top:30%" data-k="kuzov" aria-label="Считать метку на кузове"></button>
+          <button class="tagpt" type="button" style="left:15.5%;top:59%" data-k="os" aria-label="Считать метку на оси колёсной пары"></button>
+          <button class="tagpt" type="button" style="left:33%;top:60%" data-k="vr" aria-label="Считать метку на воздухораспределителе"></button>
+          <button class="tagpt" type="button" style="left:52%;top:70%" data-k="rama" aria-label="Считать метку на боковой раме"></button>
+          <button class="tagpt" type="button" style="left:64.5%;top:76%" data-k="koleso" aria-label="Считать метку на колесе"></button>
+          <button class="tagpt" type="button" style="left:87.5%;top:63%" data-k="scep" aria-label="Считать метку на автосцепке"></button>
         </div>
-        <div class="row">
-          <i>02</i>
-          <b>Оборудование</b>
-          <p>UHF-метки, в том числе для металла; считыватели и антенные комплексы.</p>
-          <a href="#patent">Патент на полезную модель →</a>
-        </div>
-        <div class="row">
-          <i>03</i>
-          <b>Внедрение</b>
-          <p>От обследования площадки и испытаний до опытной эксплуатации.</p>
-        </div>
-      </div>
-
-      <section class="section" id="products">
-        <h2>Продукты и услуги</h2>
-        <div class="cards">
-          <div class="card">
-            <b>Платформа ЛАРПИТ</b>
-            <p>Программный комплекс идентификационной маркировки и учёта деталей по UHF RFID. Собственная разработка, в составе:</p>
-            <ul>
-              <li>мобильное приложение промышленного считывателя-программатора (Android) — запись и проверка меток;</li>
-              <li>серверная часть с централизованной базой данных — паспорт и история каждой детали;</li>
-              <li>веб-панель управления — учётные записи, устройства, справочники, операции, отчёты;</li>
-              <li>приложение работника на смартфоне с компактным UHF-считывателем;</li>
-              <li>встроенное ПО стационарных точек контроля (антенных комплексов).</li>
-            </ul>
-          </div>
-          <div class="card">
-            <b>Оборудование</b>
-            <p>Поставка и комплектование под объект заказчика:</p>
-            <ul>
-              <li>UHF-метки EPC Gen2, в том числе для установки на металл;</li>
-              <li>стационарные считыватели и антенные комплексы точек контроля;</li>
-              <li>компактные UHF-считыватели к смартфонам, считыватели-программаторы;</li>
-              <li>контроллеры точек контроля, монтажные комплекты.</li>
-            </ul>
-          </div>
-          <div class="card">
-            <b>Внедрение и сопровождение</b>
-            <p>Обследование площадки и пробные считывания, проектирование точек контроля, установка и настройка платформы, пусконаладка оборудования, опытная эксплуатация, обучение персонала, техническая поддержка и сопровождение.</p>
-          </div>
-          <div class="card">
-            <b>Разработка ПО на заказ</b>
-            <p>Доработка платформы под процессы заказчика: отраслевые модули учёта, маршрутные карты и отчётность, интеграция с учётными и производственными системами, встроенное ПО считывателей.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="patent">
-        <h2>Патент</h2>
-        <div class="patent">
-          <span class="pt-kind">Полезная модель</span>
-          <b class="pt-title">Пассивный радиочастотный идентификатор (RFID)</b>
-          <dl class="info">
-            <dt>Номер заявки</dt><dd><code>№ 2026121519</code></dd>
-            <dt>Дата приоритета</dt><dd>09.07.2026</dd>
-            <dt>Решение Роспатента</dt><dd>от 19.11.2026 о выдаче патента</dd>
+        <aside class="reader" aria-live="polite">
+          <div class="rd-top"><span>Экран считывателя</span><span class="rd-state">Наведите на метку</span></div>
+          <code class="rd-epc">— — — —</code>
+          <dl>
+            <dt>Деталь</dt><dd data-f="part">—</dd>
+            <dt>Номер</dt><dd data-f="num">—</dd>
+            <dt>Изготовлена</dt><dd data-f="made">—</dd>
+            <dt>Статус</dt><dd data-f="st">—</dd>
+            <dt>Последняя операция</dt><dd data-f="op">—</dd>
           </dl>
-        </div>
-      </section>
+          <p class="rd-note">Нажмите на любую метку на вагоне. Данные демонстрационные.</p>
+        </aside>
+      </div>
 
-      <section class="section" id="prices">
-        <h2>Стоимость<small>ориентировочные цены; итоговая стоимость определяется договором по составу поставки и работ</small></h2>
-        <table class="price">
-          <tr><th>Позиция</th><th>Цена</th></tr>
-          <tr><td>Лицензия на платформу ЛАРПИТ<small>простая (неисключительная) лицензия, одно предприятие, 12 месяцев</small></td><td>от 300 000 ₽</td></tr>
-          <tr><td>Разработка и доработка программного обеспечения<small>за один час работы специалиста</small></td><td>4 000 ₽</td></tr>
-          <tr><td>Оборудование, внедрение и сопровождение<small>метки, считыватели, антенные комплексы; обследование, проектирование, пусконаладка</small></td><td>по запросу</td></tr>
-        </table>
-        <p>Цены указаны без НДС. Стоимость оборудования и внедрения рассчитывается по составу поставки и работ — <a href="mailto:info@konusgruppsoft.ru">info@konusgruppsoft.ru</a>.</p>
-      </section>
+      <div class="status">
+        <span class="ok">Патент</span>
+        <p>Решение Роспатента от 19.11.2026 о выдаче патента на полезную модель «Пассивный радиочастотный идентификатор (RFID)». <a href="/oborudovanie/#patent">Подробнее</a></p>
+      </div>
 
-      <section class="section" id="company">
-        <h2>Сведения об организации</h2>
-        <dl class="info">
-          <dt>Полное наименование</dt><dd>Акционерное общество «КонусГрупп Софт»</dd>
-          <dt>Сокращённое наименование</dt><dd>АО «КГ Софт»</dd>
-          <dt>ИНН / КПП</dt><dd><code>5007129820</code> / <code>500701001</code></dd>
-          <dt>ОГРН</dt><dd><code>1265000065186</code></dd>
-          <dt>Адрес</dt><dd>141983, Московская область, г. о. Дубна, г. Дубна, ул. Программистов, д. 4, стр. 2</dd>
-          <dt>Телефон</dt><dd><a href="tel:+79175108618">+7 (917) 510-86-18</a></dd>
-          <dt>Электронная почта</dt><dd><a href="mailto:info@konusgruppsoft.ru">info@konusgruppsoft.ru</a></dd>
-          <dt>Основной ОКВЭД</dt><dd><code>62.01</code> — Разработка компьютерного программного обеспечения</dd>
-          <dt>Виды деятельности в области ИТ<br>(перечень, утверждённый приказом Минцифры России от 11.05.2023 № 449)</dt>
-          <dd><ul>
-            <li><code>1.01</code> — проектирование, разработка, адаптация, модификация, установка, тестирование и сопровождение программ для ЭВМ и баз данных;</li>
-            <li><code>1.02</code> — проектирование и разработка программно-аппаратных комплексов, электронной продукции и устройств интернета вещей;</li>
-            <li><code>2.01</code> — реализация программ для ЭВМ и баз данных, предоставление прав использования (лицензирование);</li>
-            <li><code>8.01</code> — подготовка и реализация проектов автоматизации и цифровизации, включая монтажные и пусконаладочные работы;</li>
-            <li><code>27.01</code> — поставка программно-аппаратных комплексов и оборудования, его компонентов.</li>
-          </ul></dd>
-          <dt>Исключительные права на ПО</dt>
-          <dd>АО «КонусГрупп Софт» — правообладатель программного комплекса «ЛАРПИТ» (исключительные права в полном объёме). Право использования предоставляется по лицензионному договору (простая неисключительная лицензия) либо в составе договора на разработку и внедрение.</dd>
-          <dt>Языки и инструменты разработки</dt>
-          <dd>Kotlin (приложения Android), TypeScript и Node.js (серверная часть), React (веб-интерфейсы), PostgreSQL и SQLite (базы данных), C++ (встроенное ПО считывателей), Git.</dd>
-        </dl>
-      </section>
+      <div class="tiles">
+        <a class="tile main" href="/vnedrenie/"><b>Внедрение</b><p>Порядок работ: от обследования площадки до опытной эксплуатации и сопровождения.</p></a>
+        <a class="tile" href="/proekt/"><b>Ход проекта</b><p>Хроника: испытания, патент, конференция, утверждённая дорожная карта и ближайшие этапы.</p></a>
+        <a class="tile" href="/ispytaniya/"><b>Испытания</b><p>Климатическая камера, вагоны в депо, проезды на скорости, колесо на заводе-изготовителе. Этапы, результаты, протоколы.</p></a>
+        <a class="tile" href="/razrabotka/"><b>Разработка</b><p>Платформа ЛАРПИТ и доработка под процессы заказчика.</p></a>
+        <a class="tile" href="/oborudovanie/"><b>Оборудование</b><p>UHF-метки, в том числе для металла, считыватели и антенные комплексы. Патент.</p></a>
+        <a class="tile" href="/oez/"><b>ОЭЗ «Дубна»</b><p>Работаем на территории особой экономической зоны, подана заявка на статус резидента.</p></a>
+        <a class="tile" href="/o-kompanii/"><b>О компании</b><p>Реквизиты, виды деятельности в области ИТ, стоимость, контакты.</p></a>
+      </div>
     </main>
   </div>
 
   <footer>
     <div class="wrap">
-      <span>АО «КонусГрупп Софт» · ОГРН 1265000065186 · ИНН 5007129820 · +7 (917) 510-86-18</span>
-      <span>141983, Московская область, г. Дубна, ул. Программистов, д. 4, стр. 2</span>
+      <span>АО «КонусГрупп Софт» · ОГРН 1265000065186 · ИНН 5007129820 · <a href="tel:+79175108618">+7 (917) 510-86-18</a></span>
+      <span>141983, Московская область, г. Дубна, ул. Программистов, д. 4, стр. 2 · <a href="/o-kompanii/">реквизиты</a></span>
     </div>
   </footer>
+  <dialog class="lightbox" aria-label="Просмотр фото"><form method="dialog"><button aria-label="Закрыть">Закрыть</button></form><img alt=""><p></p></dialog>
+  <script src="/assets/site.js"></script>
 </body>
 </html>

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Испытания — КГ Софт</title>
+  <meta name="description" content="Испытания RFID-меток и платформы ЛАРПИТ: климатическая камера, маркировка вагонов, проезды под постом считывания. Этапы, результаты, протоколы.">
+  <meta property="og:title" content="Испытания — КГ Софт">
+  <meta property="og:description" content="Испытания RFID-меток и платформы ЛАРПИТ: климатическая камера, маркировка вагонов, проезды под постом считывания. Этапы, результаты, протоколы.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://konusgruppsoft.ru/ispytaniya/">
+  <link rel="canonical" href="https://konusgruppsoft.ru/ispytaniya/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23161a20'/%3E%3Cpath d='M27.70 9.03 L22.97 4.30 L4.30 4.30 L4.30 27.70 L27.70 27.70 L27.70 13.66 L21.61 7.57 L7.57 7.57 L7.57 24.43 L24.43 24.43 L24.43 15.01 L20.26 10.84 L10.84 10.84 L10.84 21.16 L21.16 21.16 L21.16 16.00 L18.15 16.00' fill='none' stroke='%23e8a33d' stroke-width='1.9' stroke-linejoin='miter'/%3E%3Crect x='13.9' y='13.9' width='4.2' height='4.2' fill='%23e8a33d'/%3E%3C/svg%3E">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=PT+Sans:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body data-api="">
+  <div class="hazard" aria-hidden="true"></div>
+  <div class="wrap">
+    <header>
+      <div class="top">
+        <a class="brand" href="/">
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <rect class="lg-bg" x="6" y="6" width="188" height="188" rx="22" stroke-width="4"/>
+            <path class="lg-line" d="M170.72 57.88 L142.12 29.28 L29.28 29.28 L29.28 170.72 L170.72 170.72 L170.72 85.82 L133.94 49.04 L49.04 49.04 L49.04 150.96 L150.96 150.96 L150.96 94.01 L125.75 68.80 L68.80 68.80 L68.80 131.20 L131.20 131.20 L131.20 100.00 L113.00 100.00" stroke-width="11" stroke-linejoin="miter"/>
+            <rect class="lg-dot" x="87" y="87" width="26" height="26"/>
+          </svg>
+          <b>КГ Софт<small>АО «КонусГрупп Софт»</small></b>
+        </a>
+        <div class="tools">
+          <a class="mail" href="mailto:info@konusgruppsoft.ru">info@konusgruppsoft.ru</a>
+          <button class="theme" type="button" aria-label="Переключить тему оформления">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 0 0 13z" fill="currentColor"/></svg>
+            <span>Светлая</span>
+          </button>
+        </div>
+      </div>
+      <nav aria-label="Разделы сайта"><ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/vnedrenie/">Внедрение</a></li>
+        <li><a href="/proekt/">Ход проекта</a></li>
+        <li><a href="/ispytaniya/" aria-current="page">Испытания</a></li>
+        <li><a href="/razrabotka/">Разработка</a></li>
+        <li><a href="/oborudovanie/">Оборудование</a></li>
+        <li><a href="/oez/">ОЭЗ «Дубна»</a></li>
+        <li><a href="/o-kompanii/">О компании</a></li>
+      </ul></nav>
+    </header>
+
+    <main class="page">
+      <h1>Испытания</h1>
+      <p class="lead">Технологию проверяем по нарастающей: от стенда к вагону в депо, от стоящего вагона к движущемуся.
+         Ниже — этапы, что на каждом сделано и чем подтверждено.</p>
+
+      <div class="jump">
+        <a href="#logic">Логика испытаний</a>
+        <a href="#stend">Стенд и климатическая камера</a>
+        <a href="#depo">Маркировка вагонов</a>
+        <a href="#put">Проезды под постом считывания</a>
+        <a href="#zavod">Колесо на заводе-изготовителе</a>
+      </div>
+
+      <section class="section" id="logic">
+        <h2>Логика испытаний</h2>
+        <ol class="steps">
+          <li><b>Стенд <span class="ok">Выполнено</span></b><p>Метки, покрытия, размер метки, климатическая камера: считывание сквозь покрытие, после мороза и нагрева.</p></li>
+          <li><b>Депо: вагон стоит <span class="ok">Выполнено</span></b><p>Маркировка трёх вагонов программатором, контрольное считывание каждой метки, протоколы.</p></li>
+          <li><b>Путь: вагон идёт <span class="wait">В работе</span></b><p>Проезды вагонов под стационарным постом считывания на разных скоростях.</p></li>
+          <li><b>Подконтрольная эксплуатация <span class="wait">Следующий шаг</span></b><p>Вагоны в обороте: сохранность меток, повторные считывания в ремонте и на пути.</p></li>
+          <li><b>Пилот на депо <span class="wait">Следующий шаг</span></b><p>Маркировка силами депо на своих программаторах, учёт в системе, оценка эффекта.</p></li>
+        </ol>
+      </section>
+
+      <section class="section" id="stend">
+        <h2>Стенд и климатическая камера</h2>
+        <article class="trial">
+          <div class="hd"><span class="dt">Лето 2026 · первый заход</span><span class="ok">Выполнено</span></div>
+          <b class="tt">Мороз и нагрев: первая проверка</b>
+          <p>Корпус воздухораспределителя с меткой под покрытием ЛАРПИТ выдерживали в камере на морозе и при нагреве. После каждой выдержки метку считывали программатором.</p>
+          <dl class="info">
+            <dt>Условия</dt><dd>Выдержка при −60 °C и при +90 °C</dd>
+            <dt>Результат</dt><dd>Метка считывается после каждой выдержки</dd>
+          </dl>
+          <a class="shot" href="/assets/img/trial-vr-kevlar.jpg" data-cap="Метка под покрытием на корпусе воздухораспределителя"><img loading="lazy" src="/assets/img/trial-vr-kevlar.jpg" alt="Метка под покрытием на корпусе воздухораспределителя"></a>
+        </article>
+        <article class="trial">
+          <div class="hd"><span class="dt">Осень 2026 · второй заход · Тверь</span><span class="ok">Выполнено</span></div>
+          <b class="tt">Климатические испытания совместно с АО «Ритм» ТПТА</b>
+          <p>На экспериментальном участке завода — изготовителя тормозной аппаратуры — метки установили на воздухораспределитель и на стальные пластины с тремя вариантами полимерного состава. Метки считывали через смотровое окно камеры каждые 30 минут.</p>
+          <dl class="info">
+            <dt>Нагрев</dt><dd>+120 °C, 4,5 часа в камере</dd>
+            <dt>Мороз</dt><dd>−60 °C, 3,5 часа в камере, из них 3 часа при −60 °C</dd>
+            <dt>Удары на морозе</dt><dd>Имитация попадания щебня и задевания инструментом: корпус метки не повреждён и не отделился</dd>
+            <dt>Дальность</dt><dd>Не менее 2 метров в лабораторных условиях</dd>
+            <dt>Вывод комиссии</dt><dd>Метки считываются без ограничений в диапазоне от −60 до +120 °C; радиопрозрачность полимерного корпуса подтверждена; повреждений корпуса и ослабления крепления нет</dd>
+          </dl>
+          <details class="proto">
+            <summary>Скачать протокол — по коду доступа</summary>
+            <form data-doc="2026-10-27-ritm">
+              <input type="text" name="code" placeholder="Код доступа" autocomplete="off" aria-label="Код доступа к протоколу «Климатические испытания 27.10.2026»">
+              <button type="submit">Скачать</button>
+              <span class="msg" role="status"></span>
+            </form>
+          </details>
+          <a class="shot" href="/assets/img/trial-chamber-read.jpg" data-cap="Считывание меток через смотровое окно климатической камеры"><img loading="lazy" src="/assets/img/trial-chamber-read.jpg" alt="Считывание меток через смотровое окно климатической камеры"></a>
+        </article>
+      </section>
+
+      <section class="section" id="depo">
+        <h2>Маркировка вагонов<small>эксплуатационные испытания по согласованной программе и методике, совместно с ПКТБ ОАО «РЖД»</small></h2>
+        <article class="trial">
+          <div class="hd"><span class="dt">19.08.2026 · хоппер</span><span class="ok">Выполнено</span></div>
+          <b class="tt">Базовая схема маркировки</b>
+          <p>Оси колёсных пар, колёса, надрессорные балки, боковые рамы, корпуса автосцепки, метки на кузове. Входной контроль, запись и контрольное считывание каждой метки.</p>
+          <dl class="info">
+            <dt>Входной контроль</dt><dd>Пройден всеми метками, брака нет</dd>
+          </dl>
+          <details class="proto">
+            <summary>Скачать протокол — по коду доступа</summary>
+            <form data-doc="2026-08-19">
+              <input type="text" name="code" placeholder="Код доступа" autocomplete="off" aria-label="Код доступа к протоколу «Маркировка хоппера 19.08.2026»">
+              <button type="submit">Скачать</button>
+              <span class="msg" role="status"></span>
+            </form>
+          </details>
+          <a class="shot" href="/assets/img/trial-axle.jpg" data-cap="Метка под покрытием на оси колёсной пары"><img loading="lazy" src="/assets/img/trial-axle.jpg" alt="Метка под покрытием на оси колёсной пары"></a>
+        </article>
+        <article class="trial">
+          <div class="hd"><span class="dt">26.08.2026 · платформа</span><span class="ok">Выполнено</span></div>
+          <b class="tt">Полный комплект деталей</b>
+          <p>Самая подробная схема: метки на всех основных узлах вагона. Ходовая часть и автосцепка, тяговые хомуты, поглощающие аппараты, корпуса букс, фрикционные клинья, воздухораспределитель, тормозной цилиндр, авторежим, авторегулятор, запасной резервуар, концевые краны.</p>
+          <details class="proto">
+            <summary>Скачать протокол — по коду доступа</summary>
+            <form data-doc="2026-08-26">
+              <input type="text" name="code" placeholder="Код доступа" autocomplete="off" aria-label="Код доступа к протоколу «Маркировка платформы 26.08.2026»">
+              <button type="submit">Скачать</button>
+              <span class="msg" role="status"></span>
+            </form>
+          </details>
+          <a class="shot" href="/assets/img/trial-coupler.jpg" data-cap="Метки на корпусе автосцепки"><img loading="lazy" src="/assets/img/trial-coupler.jpg" alt="Метки на корпусе автосцепки"></a>
+        </article>
+        <article class="trial">
+          <div class="hd"><span class="dt">31.08.2026 · полувагон</span><span class="ok">Выполнено</span></div>
+          <b class="tt">Работа через интернет, без кабеля</b>
+          <p>Ходовая часть и автосцепка, тяговые хомуты, воздухораспределитель, авторежим. Программатор работал с сервером по сети, без подключения кабелем.</p>
+          <details class="proto">
+            <summary>Скачать протокол — по коду доступа</summary>
+            <form data-doc="2026-08-31">
+              <input type="text" name="code" placeholder="Код доступа" autocomplete="off" aria-label="Код доступа к протоколу «Маркировка полувагона 31.08.2026»">
+              <button type="submit">Скачать</button>
+              <span class="msg" role="status"></span>
+            </form>
+          </details>
+          <a class="shot" href="/assets/img/trial-wheel.jpg" data-cap="Метка под покрытием на колесе"><img loading="lazy" src="/assets/img/trial-wheel.jpg" alt="Метка под покрытием на колесе"></a>
+        </article>
+      </section>
+
+      <section class="section" id="put">
+        <h2>Проезды под постом считывания<small>совместно с ПКТБ ОАО «РЖД» и АО «НИИАС»</small></h2>
+        <article class="trial">
+          <div class="hd"><span class="dt">15.09.2026 · около 26 км/ч</span><span class="ok">Выполнено</span></div>
+          <b class="tt">Первый проезд группы вагонов</b>
+          <p>Три промаркированных вагона в составе грузового поезда прошли под стационарным постом считывания при штатной высоте антенн. Опознаны все три вагона группы, расхождений с реестрами маркировки нет.</p>
+          <details class="proto">
+            <summary>Скачать протокол — по коду доступа</summary>
+            <form data-doc="2026-09-15">
+              <input type="text" name="code" placeholder="Код доступа" autocomplete="off" aria-label="Код доступа к протоколу «Проезд 15.09.2026»">
+              <button type="submit">Скачать</button>
+              <span class="msg" role="status"></span>
+            </form>
+          </details>
+          <a class="shot" href="/assets/img/trial-mast.jpg" data-cap="Стационарный пост считывания у пути"><img loading="lazy" src="/assets/img/trial-mast.jpg" alt="Стационарный пост считывания у пути"></a>
+        </article>
+        <article class="trial">
+          <div class="hd"><span class="dt">25.09.2026 · около 10 км/ч</span><span class="ok">Выполнено</span></div>
+          <b class="tt">Повторный проезд, антенны на высоте 60 см</b>
+          <p>Антенны поста установили на высоте 60 см от уровня головки рельса. Считана большая часть меток вагонов группы, все считанные метки сопоставлены с реестрами. Отдельно проверено считывание мобильным считывателем.</p>
+          <details class="proto">
+            <summary>Скачать протокол — по коду доступа</summary>
+            <form data-doc="2026-09-25">
+              <input type="text" name="code" placeholder="Код доступа" autocomplete="off" aria-label="Код доступа к протоколу «Проезд 25.09.2026»">
+              <button type="submit">Скачать</button>
+              <span class="msg" role="status"></span>
+            </form>
+          </details>
+        </article>
+        <article class="trial">
+          <div class="hd"><span class="dt">Октябрь–ноябрь 2026 · 30–90 км/ч</span><span class="wait">Протокол оформляется</span></div>
+          <b class="tt">Скоростные проезды</b>
+          <p>Проследование вагонов с метками через посты считывания на скоростях от 30 до 90 км/ч.</p>
+        </article>
+      </section>
+
+      <section class="section" id="zavod">
+        <h2>Колесо на заводе-изготовителе<small>опытные работы совместно с АО «ВМЗ», Выкса</small></h2>
+        <article class="trial">
+          <div class="hd"><span class="dt">16.11.2026 · колесопрокатный цех</span><span class="ok">Выполнено</span></div>
+          <b class="tt">Монтаж меток на цельнокатаное колесо</b>
+          <p>На складе готовой продукции цеха метки закрепили на колесе полимерным составом по технологии ЛАРПИТ, записали и считали. Затем проверили считывание в условиях склада, где колёса стоят вертикально в ряд.</p>
+          <dl class="info">
+            <dt>Запись и считывание</dt><dd>Все метки записаны, сведения на экране считывателя отображаются верно</dd>
+            <dt>Считывание в ряду колёс</dt><dd>На расстоянии пяти вертикально установленных колёс, считыватель на уровне ступицы</dd>
+            <dt>Итог</dt><dd>Протокол подписан представителями завода и АО «КГ Софт». Руководству завода показано решение, ведутся переговоры о ближайших поставках меток</dd>
+          </dl>
+          <details class="proto">
+            <summary>Скачать протокол — по коду доступа</summary>
+            <form data-doc="2026-11-16-vmz">
+              <input type="text" name="code" placeholder="Код доступа" autocomplete="off" aria-label="Код доступа к протоколу «Монтаж меток на колесо 16.11.2026»">
+              <button type="submit">Скачать</button>
+              <span class="msg" role="status"></span>
+            </form>
+          </details>
+        </article>
+      </section>
+
+      <div class="next"><a href="/vnedrenie/">← Порядок внедрения</a><a href="/oborudovanie/">Оборудование →</a></div>
+    </main>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <span>АО «КонусГрупп Софт» · ОГРН 1265000065186 · ИНН 5007129820 · <a href="tel:+79175108618">+7 (917) 510-86-18</a></span>
+      <span>141983, Московская область, г. Дубна, ул. Программистов, д. 4, стр. 2 · <a href="/o-kompanii/">реквизиты</a></span>
+    </div>
+  </footer>
+  <dialog class="lightbox" aria-label="Просмотр фото"><form method="dialog"><button aria-label="Закрыть">Закрыть</button></form><img alt=""><p></p></dialog>
+  <script src="/assets/site.js"></script>
+</body>
+</html>
