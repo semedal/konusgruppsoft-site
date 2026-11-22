@@ -63,6 +63,7 @@
       var d = TAGS[btn.dataset.k];
       pts.forEach(function (x) { x.classList.toggle('on', x === btn); });
       reader.classList.remove('is-ok'); reader.classList.add('is-busy');
+      var g = document.querySelector('.gun'); if (g) g.classList.add('fire');
       reader.querySelector('.rd-state').textContent = 'Считывание…';
       clearTimeout(timer);
       timer = setTimeout(function () {
@@ -72,9 +73,28 @@
         });
         reader.querySelector('.rd-state').textContent = 'Считано';
         reader.classList.remove('is-busy'); reader.classList.add('is-ok');
+        if (g) setTimeout(function () { g.classList.remove('fire'); }, 500);
       }, 380);
     };
     pts.forEach(function (btn) { btn.addEventListener('click', function () { read(btn); }); });
+
+    // Считыватель вместо курсора: наводим на метку — она считывается.
+    var wagon = document.querySelector('.wagon');
+    var gun = document.querySelector('.gun');
+    if (wagon && gun && window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      wagon.addEventListener('pointermove', function (ev) {
+        var r = wagon.getBoundingClientRect();
+        var k = gun.getBoundingClientRect().width / 154; // антенна считывателя — под указателем
+        gun.style.transform = 'translate(' + (ev.clientX - r.left - 6 * k) + 'px,' + (ev.clientY - r.top - 71 * k) + 'px)';
+        wagon.classList.add('aim');
+      });
+      wagon.addEventListener('pointerleave', function () { wagon.classList.remove('aim'); });
+      pts.forEach(function (btn) {
+        btn.addEventListener('pointerenter', function () {
+          if (!btn.classList.contains('on')) read(btn);
+        });
+      });
+    }
     setTimeout(function () { read(pts[3]); }, 600);
   }
 
