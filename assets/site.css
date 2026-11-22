@@ -77,6 +77,8 @@ nav a[aria-current="page"]{color:var(--amber);border-bottom-color:var(--amber)}
 main{flex:1;padding:46px 0 56px}
 h1{font:600 clamp(32px,5.6vw,54px)/1.08 var(--font-display);text-transform:uppercase;letter-spacing:.015em;color:var(--head);max-width:20ch}
 h1 em{font-style:normal;color:var(--amber)}
+h1.h1-home{max-width:26ch;font-size:clamp(27px,5vw,50px)}
+h1.h1-home em{display:block}
 .page h1{font-size:clamp(28px,4.6vw,42px)}
 .crumb{display:block;margin-bottom:14px;font:400 12px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint)}
 .lead{margin-top:20px;max-width:62ch;font-size:17.5px;color:var(--text-dim)}
