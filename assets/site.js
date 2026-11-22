@@ -66,7 +66,7 @@
       reader.querySelector('.rd-state').textContent = 'Считывание…';
       clearTimeout(timer);
       timer = setTimeout(function () {
-        reader.querySelector('.rd-epc').textContent = d.epc;
+        reader.querySelector('.rd-epc').textContent = d.epc.slice(0, 19) + '\n' + d.epc.slice(20);
         ['part', 'num', 'made', 'st', 'op'].forEach(function (f) {
           reader.querySelector('[data-f="' + f + '"]').textContent = d[f];
         });

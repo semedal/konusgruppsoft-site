@@ -278,3 +278,10 @@ footer a:hover{color:var(--amber)}
 .focus + .stage{margin-top:22px}
 .screens.two{grid-template-columns:repeat(2,1fr);margin-top:16px}
 @media(max-width:680px){.screens.two{grid-template-columns:1fr}}
+
+/* экран считывателя: высота не зависит от содержимого — подпись над значением, код всегда в две строки */
+.reader .rd-epc{white-space:pre;word-break:normal;min-height:0;line-height:1.6}
+.reader dl{display:block}
+.reader dt{display:block;border-bottom:0;padding:9px 0 0;font-size:12.5px;white-space:nowrap}
+.reader dd{display:block;text-align:left;padding:1px 0 9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rd-note{min-height:2.9em}
