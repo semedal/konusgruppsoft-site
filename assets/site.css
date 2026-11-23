@@ -294,3 +294,28 @@ footer a:hover{color:var(--amber)}
 .reader dt{display:block;border-bottom:0;padding:9px 0 0;font-size:12.5px;white-space:nowrap}
 .reader dd{display:block;text-align:left;padding:1px 0 9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rd-note{min-height:2.9em}
+
+/* Запись в реестре Роспатента: карточка-документ, всегда на белом */
+.pt-open{margin-top:14px;cursor:pointer;border:1px solid var(--amber);border-radius:6px;background:transparent;color:var(--amber);padding:9px 14px;font:400 14.5px/1.2 var(--font-body)}
+.pt-open:hover,.pt-open:focus-visible{background:var(--amber);color:var(--bg)}
+.regcard{margin:auto;width:min(94vw,860px);max-height:92vh;overflow:auto;border:1px solid var(--line-strong);border-radius:10px;background:var(--panel);color:var(--text);padding:12px}
+.regcard::backdrop{background:rgba(8,10,13,.82)}
+.regcard form{display:flex;justify-content:flex-end;margin-bottom:8px}
+.regcard form button{cursor:pointer;border:1px solid var(--line-strong);border-radius:6px;background:transparent;color:var(--text-dim);padding:6px 12px;font:400 13px/1 var(--font-body)}
+.regcard form button:hover{color:var(--amber);border-color:var(--amber)}
+.reg-paper{background:#fff;color:#16191d;border-radius:6px;padding:22px 24px;font-size:15px;line-height:1.5}
+.reg-paper p{margin-top:8px}
+.reg-head{display:grid;grid-template-columns:64px 1fr auto;gap:18px;align-items:center;padding-bottom:16px;border-bottom:2px solid #16191d}
+.reg-head img{display:block;width:64px;height:auto}
+.reg-head p{margin:0;font-weight:700;text-transform:uppercase;font-size:13.5px;letter-spacing:.03em;line-height:1.45}
+.reg-num{display:grid;gap:2px;text-transform:none!important;font-weight:400!important;white-space:nowrap}
+.reg-num b{font-size:16px}
+.reg-title{margin-top:16px!important;font-weight:700;text-transform:uppercase;font-size:14px;letter-spacing:.03em}
+.reg-dim{color:#5a6470}
+.reg-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:18px}
+.reg-cols table{width:100%;border-collapse:collapse;font-size:14px;align-self:start}
+.reg-cols caption{text-align:left;font-weight:700;padding-bottom:6px;border-bottom:1px solid #16191d}
+.reg-cols td{padding:7px 0;border-bottom:1px solid #dfe3e8;vertical-align:top}
+.reg-cols td:last-child{text-align:right;white-space:nowrap;padding-left:12px;font-variant-numeric:tabular-nums}
+.reg-src{margin-top:10px;font-size:13.5px;color:var(--text-dim)}
+@media(max-width:640px){.reg-cols{grid-template-columns:1fr}.reg-head{grid-template-columns:48px 1fr}.reg-head img{width:48px}.reg-num{grid-column:1/-1;grid-auto-flow:column;justify-content:start;gap:14px}.reg-paper{padding:16px}}

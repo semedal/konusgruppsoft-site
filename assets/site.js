@@ -98,6 +98,14 @@
     setTimeout(function () { read(pts[3]); }, 600);
   }
 
+  // Окна по кнопке (запись в реестре)
+  document.querySelectorAll('[data-dialog]').forEach(function (btn) {
+    var dlg = document.getElementById(btn.dataset.dialog);
+    if (!dlg || !dlg.showModal) return;
+    btn.addEventListener('click', function () { dlg.showModal(); });
+    dlg.addEventListener('click', function (ev) { if (ev.target === dlg) dlg.close(); });
+  });
+
   // Просмотр фото
   var box = document.querySelector('.lightbox');
   if (box && box.showModal) {
