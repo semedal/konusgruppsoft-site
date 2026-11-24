@@ -68,8 +68,8 @@ header{padding:22px 0 0}
 
 nav{margin-top:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
-nav ul{display:flex;gap:26px;list-style:none;white-space:nowrap}
-nav a{display:block;padding:13px 0 11px;border-bottom:2px solid transparent;font:500 13.5px/1 var(--font-display);letter-spacing:.11em;text-transform:uppercase;color:var(--text-dim)}
+nav ul{display:flex;gap:18px;list-style:none;white-space:nowrap}
+nav a{display:block;padding:13px 0 11px;border-bottom:2px solid transparent;font:500 13.5px/1 var(--font-display);letter-spacing:.09em;text-transform:uppercase;color:var(--text-dim)}
 nav a:hover{color:var(--text);text-decoration:none}
 nav a[aria-current="page"]{color:var(--amber);border-bottom-color:var(--amber)}
 
@@ -328,3 +328,9 @@ footer a:hover{color:var(--amber)}
 .chron-g li{position:relative;padding-left:18px;line-height:1.55}
 .chron-g li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;border:1.5px solid var(--amber)}
 @media(max-width:640px){.chron-g{grid-template-columns:1fr;gap:8px;padding:16px 0}}
+
+/* Три карточки в ряд и списки деталей */
+.cards.three{grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:860px){.cards.three{grid-template-columns:1fr}}
+.card ul.chips{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 0;padding:0}
+.card ul.chips li{margin:0;border:1px solid var(--line-strong);border-radius:999px;padding:4px 11px;font-size:13.5px;line-height:1.4;color:var(--text)}
