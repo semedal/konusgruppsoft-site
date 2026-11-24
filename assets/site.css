@@ -319,3 +319,12 @@ footer a:hover{color:var(--amber)}
 .reg-cols td:last-child{text-align:right;white-space:nowrap;padding-left:12px;font-variant-numeric:tabular-nums}
 .reg-src{margin-top:10px;font-size:13.5px;color:var(--text-dim)}
 @media(max-width:640px){.reg-cols{grid-template-columns:1fr}.reg-head{grid-template-columns:48px 1fr}.reg-head img{width:48px}.reg-num{grid-column:1/-1;grid-auto-flow:column;justify-content:start;gap:14px}.reg-paper{padding:16px}}
+
+/* Хроника: месяц один раз слева, события списком справа */
+.chron{border-top:1px solid var(--line)}
+.chron-g{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 28px;padding:18px 0;border-bottom:1px solid var(--line)}
+.chron-g > b{font:500 13px/1.7 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--amber);padding-top:2px}
+.chron-g ul{list-style:none;display:grid;gap:12px;max-width:78ch}
+.chron-g li{position:relative;padding-left:18px;line-height:1.55}
+.chron-g li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;border:1.5px solid var(--amber)}
+@media(max-width:640px){.chron-g{grid-template-columns:1fr;gap:8px;padding:16px 0}}
